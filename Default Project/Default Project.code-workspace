@@ -1,0 +1,18 @@
+{
+    "folders": [
+        {
+            "name": "choreo-project-root",
+            "path": "."
+        },
+        {
+            "name": "servicechaindemo",
+            "path": "repos/dushansachinda/choreo-components-demo/servicechain"
+        }
+    ],
+    "metadata": {
+        "choreo": {
+            "projectID": "d219d178-56ca-491c-a513-f6b10012ddfd",
+            "orgId": "14396"
+        }
+    }
+}
