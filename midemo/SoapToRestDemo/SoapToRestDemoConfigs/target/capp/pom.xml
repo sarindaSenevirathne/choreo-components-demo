@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>SoapToRestDemoConfigs_module</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>SoapToRestDemoConfigs_module</name>
+  <description>SoapToRestDemoConfigs_module</description>
+  <modules>
+    <module>artifacts/api/phoneAPI</module>
+    <module>artifacts/metadata/phoneAPI_swagger</module>
+    <module>artifacts/metadata/phoneAPI_metadata</module>
+    <module>artifacts/endpoint/phoneAPI_SOAP_ENDPOINT</module>
+  </modules>
+  <distributionManagement>
+    <repository>
+      <id>release</id>
+      <name>Release Distribution Repository</name>
+      <url>https://example.com/nexus/repository</url>
+    </repository>
+  </distributionManagement>
+</project>

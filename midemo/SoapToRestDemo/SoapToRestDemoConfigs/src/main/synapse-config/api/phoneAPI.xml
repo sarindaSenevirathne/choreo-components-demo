@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/phonerest" name="phoneAPI" version="1.0.0" version-type="context" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" url-mapping="/checkPhoneNumber">
+        <inSequence>
+            <!--  header name="SOAPAction" scope="transport" value="http://ws.cdyne.com/PhoneVerify/query/CheckPhoneNumber"/ -->
+            <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
+            <payloadFactory media-type="xml" template-type="freemarker">
+                <format><![CDATA[<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+<soapenv:Header/>
+<soapenv:Body>
+<CheckPhoneNumber xmlns="http://ws.cdyne.com/PhoneVerify/query"><PhoneNumber>${payload.CheckPhoneNumber.PhoneNumber}</PhoneNumber><LicenseKey>${payload.CheckPhoneNumber.LicenseKey}</LicenseKey></CheckPhoneNumber></soapenv:Body>
+</soapenv:Envelope>
+]]></format>
+                <args/>
+            </payloadFactory>
+            <property name="messageType" scope="axis2" type="STRING" value="application/soap+xml"/>
+            <call>
+                <endpoint key="phoneAPI_SOAP_ENDPOINT"/>
+            </call>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="POST" url-mapping="/checkPhoneNumbers">
+        <inSequence>
+            <header name="SOAPAction" scope="transport" value="http://ws.cdyne.com/PhoneVerify/query/CheckPhoneNumbers"/>
+            <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
+            <payloadFactory media-type="xml" template-type="freemarker">
+                <format><![CDATA[<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+<soapenv:Header/>
+<soapenv:Body>
+<web:CheckPhoneNumbers xmlns:web="http://ws.cdyne.com/PhoneVerify/query"><PhoneNumbers xmlns=""><string xmlns="" ARRAY_PLACEHOLDER="payload.CheckPhoneNumbers.PhoneNumbers.string">${string}</string></PhoneNumbers><LicenseKey xmlns="">${payload.CheckPhoneNumbers.LicenseKey}</LicenseKey></web:CheckPhoneNumbers></soapenv:Body>
+</soapenv:Envelope>
+]]></format>
+                <args/>
+            </payloadFactory>
+            <property name="messageType" scope="axis2" type="STRING" value="application/soap+xml"/>
+            <call>
+                <endpoint key="phoneAPI_SOAP_ENDPOINT"/>
+            </call>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

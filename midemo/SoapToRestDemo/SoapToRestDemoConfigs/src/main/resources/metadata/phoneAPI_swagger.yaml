@@ -1,0 +1,190 @@
+openapi: 3.0.1
+info:
+  title: phoneAPI
+  description: API Definition of phoneAPI
+  version: 1.0.0
+servers:
+- url: /phonerest
+paths:
+  /checkPhoneNumber:
+    post:
+      operationId: CheckPhoneNumber
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                CheckPhoneNumber:
+                  $ref: '#/components/schemas/rootElement_CheckPhoneNumber'
+        required: true
+      responses:
+        default:
+          description: Default Description
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  CheckPhoneNumberResponse:
+                    $ref: '#/components/schemas/rootElement_CheckPhoneNumberResponse'
+      x-wso2-soap:
+        x-soap-style: document
+        soap-action: http://ws.cdyne.com/PhoneVerify/query/CheckPhoneNumber
+        x-soap-message-type: document
+        soap-operation: CheckPhoneNumber
+        namespace: http://ws.cdyne.com/PhoneVerify/query
+        x-soap-version: '1.2'
+  /checkPhoneNumbers:
+    post:
+      operationId: CheckPhoneNumbers
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                CheckPhoneNumbers:
+                  $ref: '#/components/schemas/rootElement_CheckPhoneNumbers'
+        required: true
+      responses:
+        default:
+          description: Default Description
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  CheckPhoneNumbersResponse:
+                    $ref: '#/components/schemas/rootElement_CheckPhoneNumberResponse'
+      x-wso2-soap:
+        x-soap-style: document
+        soap-action: http://ws.cdyne.com/PhoneVerify/query/CheckPhoneNumbers
+        x-soap-message-type: document
+        soap-operation: CheckPhoneNumbers
+        namespace: http://ws.cdyne.com/PhoneVerify/query
+        x-soap-version: '1.2'
+components:
+  schemas:
+    ArrayOfString:
+      type: object
+      properties:
+        string:
+          type: array
+          items:
+            type: string
+      xml:
+        namespace: http://ws.cdyne.com/PhoneVerify/query
+      x-namespace-qualified: false
+    ArrayOfPhoneReturn:
+      type: object
+      properties:
+        PhoneReturn:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneReturn'
+      xml:
+        namespace: http://ws.cdyne.com/PhoneVerify/query
+      x-namespace-qualified: false
+    PhoneReturn:
+      type: object
+      properties:
+        Company:
+          type: string
+        Valid:
+          type: boolean
+        Use:
+          type: string
+        State:
+          type: string
+        Switch:
+          type: string
+        RC:
+          type: string
+        OCN:
+          type: string
+        OriginalNumber:
+          type: string
+        CleanNumber:
+          type: string
+        SwitchName:
+          type: string
+        SwitchType:
+          type: string
+        Country:
+          type: string
+        CLLI:
+          type: string
+        PrefixType:
+          type: string
+        LATA:
+          type: string
+        sms:
+          type: string
+        Email:
+          type: string
+        AssignDate:
+          type: string
+        TelecomCity:
+          type: string
+        TelecomCounty:
+          type: string
+        TelecomState:
+          type: string
+        TelecomZip:
+          type: string
+        TimeZone:
+          type: string
+        Lat:
+          type: string
+        Long:
+          type: string
+        Wireless:
+          type: boolean
+        LRN:
+          type: string
+      xml:
+        namespace: http://ws.cdyne.com/PhoneVerify/query
+      x-namespace-qualified: false
+    rootElement_CheckPhoneNumbersResponse:
+      type: object
+      properties:
+        CheckPhoneNumbersResult:
+          $ref: '#/components/schemas/ArrayOfPhoneReturn'
+      xml: {
+        }
+      x-namespace-qualified: false
+    rootElement_CheckPhoneNumber:
+      type: object
+      properties:
+        PhoneNumber:
+          type: string
+        LicenseKey:
+          type: string
+      xml: {
+        }
+      x-namespace-qualified: false
+    rootElement_CheckPhoneNumbers:
+      type: object
+      properties:
+        PhoneNumbers:
+          $ref: '#/components/schemas/ArrayOfString'
+        LicenseKey:
+          type: string
+      xml: {
+        }
+      x-namespace-qualified: false
+    rootElement_ArrayOfPhoneReturn:
+      $ref: '#/components/schemas/ArrayOfPhoneReturn'
+    rootElement_CheckPhoneNumberResponse:
+      type: object
+      properties:
+        CheckPhoneNumberResult:
+          $ref: '#/components/schemas/PhoneReturn'
+      xml: {
+        }
+      x-namespace-qualified: false
+    rootElement_PhoneReturn:
+      $ref: '#/components/schemas/PhoneReturn'
+    StringArray:
+      type: object

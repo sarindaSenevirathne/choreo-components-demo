@@ -1,0 +1,11 @@
+---
+key: "phoneAPI-1.0.0"
+name : "phoneAPI"
+displayName : "phoneAPI"
+description: "Sample API"
+version: "1.0.0"
+serviceUrl: "http://localhost:8290/phonerest"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
+apiId : "null"
