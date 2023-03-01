@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<api context="/phonerest" name="phoneAPI" version-type="context" xmlns="http://ws.apache.org/ns/synapse">
+<api context="/phonerest" name="phoneAPI" xmlns="http://ws.apache.org/ns/synapse">
     <resource methods="POST" url-mapping="/checkPhoneNumber">
         <inSequence>
             <!--  header name="SOAPAction" scope="transport" value="http://ws.cdyne.com/PhoneVerify/query/CheckPhoneNumber"/ -->
