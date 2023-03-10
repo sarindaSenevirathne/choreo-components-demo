@@ -1,9 +1,20 @@
 const { Kafka } = require('kafkajs');
 
+// const kafka = new Kafka({
+//   clientId: 'my-app',
+//   brokers: ['2.tcp.ngrok.io:14890']
+// });
+
 const kafka = new Kafka({
-  clientId: 'my-app',
-  brokers: ['2.tcp.ngrok.io:14890']
-});
+    clientId: "order-consumer",
+    brokers: ["pkc-6ojv2.us-west4.gcp.confluent.cloud:9092"],
+    ssl: true,
+    sasl: {
+      mechanism: "plain",
+      username: "22RAVPUCSTX365G5",
+      password: "yQ5magtcSvzc5dT9aXNNcj6GevJ2zqYl7Bax7ECR+6q6FZR58dBvwohmeOiEeQcc",
+    },
+  });
 
 const consumer = kafka.consumer({ groupId: 'order-consumers' });
 const producer = kafka.producer();
