@@ -6,13 +6,15 @@ configurable string orders = "orders";
 configurable string paymentSuccessOrders = "payment-success-orders";
 configurable decimal pollingInterval = 1;
 //configurable string kafkaEndpoint = "pkc-6ojv2.us-west4.gcp.confluent.cloud:9092";
-configurable string kafkaEndpoint = "4.tcp.ngrok.io:10962";
+configurable string kafkaEndpoint = "2.tcp.ngrok.io:14890";
 
 // public type Order readonly & record {|
 //     int id;
 //     string desc;
 //     PaymentStatus paymentStatus;
 // |};
+
+//{"ordertime": 1497014222380,"orderid": 18,"itemid": "Item_184","paymentStatus": "SUCCESS","address": {"city": "Mountain View","state": "CA","zipcode": 94041}}
 
 public enum PaymentStatus {
     SUCCESS,
@@ -59,6 +61,7 @@ final kafka:ConsumerConfiguration consumerConfigs = {
     groupId: groupId,
     topics: [orders],
     offsetReset: kafka:OFFSET_RESET_EARLIEST,
+
     //auth: {username: "22RAVPUCSTX365G5", password: "yQ5magtcSvzc5dT9aXNNcj6GevJ2zqYl7Bax7ECR+6q6FZR58dBvwohmeOiEeQcc"},
     //securityProtocol: kafka:PROTOCOL_SASL_SSL,
     pollingInterval
