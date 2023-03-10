@@ -2,8 +2,8 @@
 FROM node:18-alpine
 
 # Create a non-root user and group with a specific UID and GID
-RUN groupadd -r -g 10014 mygroup \
-    && useradd -r -u 10014 -g mygroup myuser
+RUN addgroup --gid 10014 mygroup \
+    && adduser --uid 10014 --ingroup mygroup --disabled-password myuser
 
 # Create a directory to hold the application code
 WORKDIR /app
