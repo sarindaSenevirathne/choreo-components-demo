@@ -1,5 +1,6 @@
 import ballerinax/trigger.shopify;
 import ballerina/http;
+import ballerina/log;
 
 configurable shopify:ListenerConfig config = ?;
 
@@ -10,6 +11,7 @@ service shopify:OrdersService on webhookListener {
   
     remote function onOrdersCreate(shopify:OrderEvent event ) returns error? {
       //Not Implemented
+      log:printInfo("Order Created", event=event);
     }
     remote function onOrdersCancelled(shopify:OrderEvent event ) returns error? {
       //Not Implemented
