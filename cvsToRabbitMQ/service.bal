@@ -7,24 +7,28 @@ import ballerinax/rabbitmq;
 
 configurable string MQ_HOST = ?;
 configurable int MQ_PORT = ?;
+configurable string FTP_HOST = ?;
+configurable int FTP_PORT = ?;
+configurable string FTP_USER = ?;
+configurable string FTP_PASSWORD = ?;
+configurable string FTP_PATH = ?;
+
 
 listener ftp:Listener secureRemoteServer = check new ({
     protocol: ftp:SFTP,
-    host: "ftp.support.wso2.com",
+    host: FTP_HOST,
     auth: {
         credentials: {
-            username: "rosbanksub",
-            password: "pAa.U!Nb02jds*z6$0i-"
+            username: FTP_USER,
+            password: FTP_PASSWORD
         }
     },
-    port: 22,
-    path: "/rosbanksub/in/",
+    port: FTP_PORT,
+    path: FTP_PATH,
     pollingInterval: 1,
     fileNamePattern: "(.*).csv"
 });
 
-//public final rabbitmq:Client statePersistProducer = check new (rabbitmq:DEFAULT_HOST, rabbitmq:DEFAULT_PORT);
-public final rabbitmq:Client statePersistProducer = check new (MQ_HOST, MQ_PORT);
 
 service "Covid19UpdateDownloader" on secureRemoteServer {
 
@@ -32,7 +36,7 @@ service "Covid19UpdateDownloader" on secureRemoteServer {
     //private ftp:Client sftpClient = check new(sftpClientConfig);
 
     public function init() returns error? {
-        self.rabbitmqClient = check new(MQ_HOST, MQ_PORT);
+        self.rabbitmqClient = check new (MQ_HOST, MQ_PORT);
         check self.rabbitmqClient->queueDeclare("InfectionQueue", {durable: true, autoDelete: false});
         log:printInfo("Initialized the process job.");
     }
@@ -62,20 +66,34 @@ service "Covid19UpdateDownloader" on secureRemoteServer {
         log:printInfo("Going to process new file: " + newFileName);
         stream<string[], io:Error?> csvStream = check io:fileReadCsvAsStream(newFileName);
         _ = check from var entry in csvStream
-        where entry[2] != "" && entry[3] != "" && entry[4] != ""
-        do {
-            log:printInfo("Processing new file: " + newFileName);
-            json messageJson = {country: entry[2], date: entry[3], totalCases: entry[4]};
-            string message = messageJson.toJsonString();
-            log:printInfo("Going to publish message: " + message);
-            error? result = self.rabbitmqClient->publishMessage({content: message.toBytes(),
-                routingKey: "InfectionQueue"});
-            if result is error {
-                log:printError("Error while trying to publish to the queue.");
-            }
-        };
+            where entry[2] != "" && entry[3] != "" && entry[4] != ""
+            do {
+                log:printInfo("Processing new file: " + newFileName);
+                json messageJson = {country: entry[2], date: entry[3], totalCases: entry[4]};
+                string message = messageJson.toJsonString();
+                log:printInfo("Going to publish message: " + message);
+                error? result = self.rabbitmqClient->publishMessage({
+                    content: message.toBytes(),
+                    routingKey: "InfectionQueue"
+                });
+                if result is error {
+                    log:printError("Error while trying to publish to the queue.");
+                }
+            };
         check csvStream.close();
         check file:remove(newFileName);
     }
+
+    // function fileStreamingCVS(stream<byte[] & readonly, io:Error?> fileStream) returns json|error {
+    //     byte[] bytes = [];
+    //     check fileStream.forEach(function(byte[] & readonly block) {
+    //         bytes.push(...block);
+    //     });
+    //     string s = check string:fromBytes(bytes);
+    //     //s.fromBalString().
+    //     //stream<string[], io:Error?> stringStream = s.toStream();
+    //     //json j = check s.fromJsonString();
+    //     //return j;y
+    // }
 
 }
