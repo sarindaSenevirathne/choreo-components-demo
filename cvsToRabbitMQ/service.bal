@@ -32,7 +32,7 @@ service "Covid19UpdateDownloader" on secureRemoteServer {
     //private ftp:Client sftpClient = check new(sftpClientConfig);
 
     public function init() returns error? {
-        self.rabbitmqClient = check new(rabbitmq:DEFAULT_HOST, rabbitmq:DEFAULT_PORT);
+        self.rabbitmqClient = check new(MQ_HOST, MQ_PORT);
         check self.rabbitmqClient->queueDeclare("InfectionQueue", {durable: true, autoDelete: false});
         log:printInfo("Initialized the process job.");
     }
