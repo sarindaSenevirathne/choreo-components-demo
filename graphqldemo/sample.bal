@@ -1,7 +1,7 @@
 import ballerina/graphql;
 import ballerina/http;
 
-configurable boolean enableGraphiql = ?;
+//configurable boolean enableGraphiql = ?;
 
 type VolumeInfo record {
     int averageRating?;
@@ -73,7 +73,7 @@ service class Book {
 
 @graphql:ServiceConfig {
     graphiql: {
-        enabled: enableGraphiql
+        enabled: true
     }
 }
 service /graphql on new graphql:Listener(9090) {
