@@ -48,14 +48,14 @@ service "Covid19UpdateDownloader" on secureRemoteServer {
             stream<byte[] & readonly, io:Error?>|error fileStream = check caller->get(addedFile.pathDecoded);
             if fileStream is stream<byte[] & readonly, io:Error?> {
                 log:printInfo("#1");
-                error? writeResult = io:fileWriteBlocksFromStream(fileName, fileStream, option = io:APPEND);
+                error? writeResult = io:fileWriteBlocksFromStream("/tmp/"+fileName, fileStream, option = io:APPEND);
                 error? fileCloseResult = fileStream.close();
                  log:printInfo("#2");
                 if writeResult is error || fileCloseResult is error {
                     continue;
                 }
                  log:printInfo("#3");
-                _ = start self.publishToRabbitmq(fileName);
+                _ = start self.publishToRabbitmq("/tmp/"+fileName);
             } else {
                 log:printInfo(fileStream.message());
             }
