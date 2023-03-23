@@ -1,0 +1,13 @@
+{
+    "title": "Big Brown Bear Boots",
+    "price": 74.99,
+    "grams": "1300",
+    "quantity": 3,
+    "tax_lines": [
+      {
+        "price": 13.5,
+        "rate": 0.06,
+        "title": "State tax"
+      }
+    ]
+  }
