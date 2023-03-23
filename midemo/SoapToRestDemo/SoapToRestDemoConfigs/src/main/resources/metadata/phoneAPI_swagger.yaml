@@ -6,7 +6,7 @@ info:
 servers:
 - url: /phonerest
 paths:
-  /checkPhoneNumber:
+  /phonerest/checkPhoneNumber:
     post:
       operationId: CheckPhoneNumber
       requestBody:
