@@ -1,4 +1,4 @@
-import ballerina/http;
+//import ballerina/http;
 import ballerina/log;
 import ballerinax/googleapis.sheets as sheets;
 import ballerinax/salesforce as sfdc;
@@ -50,6 +50,7 @@ listener sfdcListener:Listener sfdcEventListener = new ({
 @display { label: "Salesforce New Record to Google Sheets Row" }
 service sfdcListener:RecordService on sfdcEventListener {
     remote function onCreate(sfdcListener:EventData payload) returns error? {
+        log:printInfo("New record created #######", payload=payload);
         string sobjectId = payload?.metadata?.recordId ?: "";
         string path = string `${BASE_URL}${salesforceObject}/${sobjectId}`;
         sfdc:Client sfdcClient = check new ({
@@ -104,4 +105,4 @@ service sfdcListener:RecordService on sfdcEventListener {
     }
 }
 
-service /ignore on new http:Listener(8090) {}
+//service /ignore on new http:Listener(8090) {}
