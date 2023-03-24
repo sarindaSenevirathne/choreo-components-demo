@@ -50,7 +50,7 @@ listener sfdcListener:Listener sfdcEventListener = new ({
 @display { label: "Salesforce New Record to Google Sheets Row" }
 service sfdcListener:RecordService on sfdcEventListener {
     remote function onCreate(sfdcListener:EventData payload) returns error? {
-        log:printInfo("New record created #######", payload=payload);
+        log:printInfo("New record created ####### tested", payload=payload);
         string sobjectId = payload?.metadata?.recordId ?: "";
         string path = string `${BASE_URL}${salesforceObject}/${sobjectId}`;
         sfdc:Client sfdcClient = check new ({
