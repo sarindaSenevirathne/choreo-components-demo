@@ -31,7 +31,7 @@ be added into the Sheet.
     For more information on the secret token, please visit [Reset Your Security Token](https://help.salesforce.com/articleView?id=user_security_token.htm&type=5).
     
     Once you obtained all configurations, Replace `""` in the `Config.toml` file with your data. For the `sfdcPassword` insert the combination of your Salesforce account password with the security token received 
-6. [Select Objects](https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_select_objects.htm) for Change Notifications in the User Interface of Salesforce account.
+6. [Select Objects](Send) for Change Notifications in the User Interface of Salesforce account.
 
 ### Setting up Google Sheets account
 Create a Google account and create a connected app by visiting [Google cloud platform APIs and Services](https://console.cloud.google.com/apis/dashboard). 

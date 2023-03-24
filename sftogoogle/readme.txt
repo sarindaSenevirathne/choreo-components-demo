@@ -1,0 +1,19 @@
+dushansachinda@test.com
+Test@135VdGQOQSZ3c6bgCeq2Ay1vGlMw
+
+sales
+3MVG9l2zHsylwlpSeQAxLupjXz_n14UQe49U8ogEV.Z0MRwzVcjlq0E45TBxTl3eb0WOQ6Ia.GAXlY2BsVT0x
+7BC8B00824537A8AC3ACB338AF80C87E2D6B030496854982DE0A5199D9964AF2
+5Aep861d1G_LVSxTq1kUSWZCcckFvPVA2nBkwM2kekKL4RLOvEJ5FojYRbuwWoqorSzOghEtSvI8X3tGL6AWb0m
+https://login.salesforce.com/services/oauth2/token
+
+base https://53w5-dev-ed.my.salesforce.com
+
+google
+1026479141113-etq7ch9aqkqqccluvpnmg68hfub2n5mc.apps.googleusercontent.com
+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
+1//04aspzAGu5svhCgYIARAAGAQSNwF-L9Irsv2A4P4ETE1D0FiCN_s_GxWv9Gyl0IjopoIxTLJfYE07MSQJ9iKdbAsR6XvVuFumqcg
+https://www.googleapis.com/oauth2/v3/token
+
+
+1QbQCM3Sx0GIHDXrkXtnwt6uM130wVSjkh2J4KFR9qMs
