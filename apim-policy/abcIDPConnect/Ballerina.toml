@@ -1,0 +1,11 @@
+[package]
+org = "hahack23"
+name = "abcIDPConnect"
+version = "1.1.1"
+export = ["abcIDPConnect"]
+distribution = "2201.3.1"
+keywords = ["choreo-apim-mediation-policy","choreo-apim-mediation-request-flow","choreo-apim-mediation-response-flow","choreo-apim-mediation-fault-flow"]
+
+[build-options]
+observabilityIncluded = true
+
