@@ -100,11 +100,23 @@ service / on new http:Listener(9090) {
         }
     }
 
-    resource function get pet/[string id](@http:Header {name: "x-jwt-assertion"} string? jwtToken, @http:Header {name: "custom-header"} string? header) returns Pets|http:NotFound {
+    resource function get pet/[string id](@http:Header {name: "x-jwt-assertion"} string? jwtToken, @http:Header {name: "Authorization"} string? auth,@http:Header {name: "custom-header"} string? header,@http:Header {name: "abcIDPToken"} string? abcIDPToken) returns Pets|http:NotFound {
         if (header is string) {
             log:printInfo("Custom header: " + <string>header);
         }
         //log:printInfo("Custom header: " + <string>header);
+        if (jwtToken is string) {
+            log:printInfo("JWT header: " + <string>jwtToken);
+        }
+
+        if (auth is string) {
+            log:printInfo("auth header: " + <string>auth);
+        }
+
+        if (abcIDPToken is string) {
+            log:printInfo("abcIDPToken header: " + <string>abcIDPToken);
+        }
+
         Pets? pet = petsIds[id];
         if pet is () {
             return http:NOT_FOUND;
