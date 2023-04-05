@@ -21,13 +21,13 @@ import ballerina/log;
 public function policyNameIn(mediation:Context ctx, http:Request req, string name, string value) 
                                 returns http:Response|false|error|() {
     // Creates a new client with the backend URL.
-    final http:Client clientEndpoint = check new ("https://api.asgardeo.io/t/hahack23",httpVersion = http:HTTP_1_1);
+    final http:Client clientEndpoint = check new ("https://api.asgardeo.io/t/xxx",httpVersion = http:HTTP_1_1);
     json response = check clientEndpoint->post("/oauth2/token", 
         {
             "grant_type": "client_credentials"
         },
         {
-            "Authorization": "Basic WndzQUI0RkZINnZVSHFNbExwckVsc21nanE4YTpjNG53a005X2pFVDVtQkM1eFlpdFBLOW5kNk1h"
+            "Authorization": "Basic xxxxx"
         }, 
         mime:APPLICATION_FORM_URLENCODED
        
