@@ -1,0 +1,11 @@
+[package]
+org = "hahack23"
+name = "fiservIDPConnect"
+version = "1.1.1"
+export = ["fiservIDPConnect"]
+distribution = "2201.3.1"
+keywords = ["choreo-apim-mediation-policy","choreo-apim-mediation-request-flow"]
+
+[build-options]
+observabilityIncluded = true
+
