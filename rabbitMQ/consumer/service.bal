@@ -1,17 +1,27 @@
-import ballerina/http;
+import ballerinax/rabbitmq;
+import ballerina/log;
 
-# A service representing a network-accessible API
-# bound to port `9090`.
-service / on new http:Listener(9090) {
+type person record {
+    string name;
+    int age;
+};
 
-    # A resource for generating greetings
-    # + name - the input string name
-    # + return - string name with hello message or error
-    resource function get greeting(string name) returns string|error {
-        // Send a response back to the caller.
-        if name is "" {
-            return error("name should not be empty!");
-        }
-        return "Hello, " + name;
+configurable string MQ_HOST = ?;
+configurable int MQ_PORT = ?;
+
+listener rabbitmq:Listener channelListener = new (MQ_HOST, MQ_PORT);
+
+public type StringMessage record {|
+    *rabbitmq:AnydataMessage;
+    string content;
+|};
+
+ @rabbitmq:ServiceConfig {
+      queueName: "personQ",
+      autoAck: false
+}
+service rabbitmq:Service on channelListener {
+    remote function onMessage(StringMessage message) {
+        log:printInfo("received message from personQ.", message = message.content);
     }
 }

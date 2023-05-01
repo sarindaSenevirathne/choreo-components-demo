@@ -18,11 +18,11 @@ service / on new http:Listener(9090) {
     # + return - Return Value Description
     public function init() returns error? {
         self.rabbitmqClient = check new (MQ_HOST, MQ_PORT);
-        check self.rabbitmqClient->queueDeclare("personQ", {durable: true, autoDelete: false});
-        log:printInfo("Initialized the process job.");
+        //check self.rabbitmqClient->queueDeclare("personQ", {durable: true, autoDelete: false});
+        log:printInfo("Initialized the process job test.");
     }
     resource function post produce(@http:Payload Person persn) returns error?|http:Created {
-        log:printError("produce message to personQ.");
+        log:printInfo("produce message to personQ.");
         string message = persn.toJsonString();
         error? result = self.rabbitmqClient->publishMessage({
             content: message.toBytes(),
@@ -36,3 +36,6 @@ service / on new http:Listener(9090) {
     
     }
 }
+
+
+
