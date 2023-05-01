@@ -69,7 +69,7 @@ service / on new http:Listener(9090) {
         }
     }
     resource function get v2/pet/findByStatus(@http:Header {name: "x-jwt-assertion"} string? jwtToken, @http:Header {name: "custom-header"} string? header, string status = "available") returns Pets|http:NotFound {
-        
+
         if (header is string) {
             log:printInfo("Custom header: " + <string>header);
         }
@@ -100,7 +100,7 @@ service / on new http:Listener(9090) {
         }
     }
 
-    resource function get pet/[string id](@http:Header {name: "x-jwt-assertion"} string? jwtToken, @http:Header {name: "Authorization"} string? auth,@http:Header {name: "custom-header"} string? header,@http:Header {name: "abcIDPToken"} string? abcIDPToken) returns Pets|http:NotFound {
+    resource function get pet/[string id](@http:Header {name: "x-jwt-assertion"} string? jwtToken, @http:Header {name: "Authorization"} string? auth, @http:Header {name: "custom-header"} string? header, @http:Header {name: "abcIDPToken"} string? abcIDPToken) returns Pets|http:NotFound {
         if (header is string) {
             log:printInfo("Custom header: " + <string>header);
         }
@@ -125,4 +125,8 @@ service / on new http:Listener(9090) {
         }
     }
 
+    resource function post pet(@http:Payload Pets pet) returns error? {
+            log:printInfo("call post pet " ,pet=pet.toJson());
+
+    }
 }

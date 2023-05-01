@@ -1,0 +1,1 @@
+https://admin.shopify.com/store/hashenstore/settings/notifications

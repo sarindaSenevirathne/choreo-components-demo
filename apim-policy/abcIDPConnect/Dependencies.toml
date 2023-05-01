@@ -311,7 +311,7 @@ modules = [
 [[package]]
 org = "hahack23"
 name = "abcIDPConnect"
-version = "1.1.1"
+version = "1.2.6"
 dependencies = [
 	{org = "ballerina", name = "http"},
 	{org = "ballerina", name = "io"},

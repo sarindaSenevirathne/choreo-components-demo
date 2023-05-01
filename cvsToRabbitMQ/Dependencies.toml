@@ -5,6 +5,7 @@
 
 [ballerina]
 dependencies-toml-version = "2"
+distribution-version = "2201.5.0"
 
 [[package]]
 org = "ballerina"
@@ -18,7 +19,7 @@ dependencies = [
 [[package]]
 org = "ballerina"
 name = "file"
-version = "1.6.0"
+version = "1.7.0"
 dependencies = [
 	{org = "ballerina", name = "io"},
 	{org = "ballerina", name = "jballerina.java"},
@@ -34,7 +35,7 @@ modules = [
 [[package]]
 org = "ballerina"
 name = "ftp"
-version = "2.6.0"
+version = "2.7.0"
 dependencies = [
 	{org = "ballerina", name = "io"},
 	{org = "ballerina", name = "jballerina.java"},
@@ -64,11 +65,27 @@ version = "0.0.0"
 
 [[package]]
 org = "ballerina"
+name = "lang.__internal"
+version = "0.0.0"
+dependencies = [
+	{org = "ballerina", name = "jballerina.java"},
+	{org = "ballerina", name = "lang.object"}
+]
+
+[[package]]
+org = "ballerina"
 name = "lang.int"
 version = "0.0.0"
 dependencies = [
-	{org = "ballerina", name = "jballerina.java"}
+	{org = "ballerina", name = "jballerina.java"},
+	{org = "ballerina", name = "lang.__internal"},
+	{org = "ballerina", name = "lang.object"}
 ]
+
+[[package]]
+org = "ballerina"
+name = "lang.object"
+version = "0.0.0"
 
 [[package]]
 org = "ballerina"
@@ -98,7 +115,7 @@ dependencies = [
 [[package]]
 org = "ballerina"
 name = "log"
-version = "2.6.0"
+version = "2.7.0"
 dependencies = [
 	{org = "ballerina", name = "io"},
 	{org = "ballerina", name = "jballerina.java"},
@@ -129,7 +146,7 @@ dependencies = [
 [[package]]
 org = "ballerina"
 name = "regex"
-version = "1.3.2"
+version = "1.4.2"
 dependencies = [
 	{org = "ballerina", name = "jballerina.java"},
 	{org = "ballerina", name = "lang.string"}
@@ -138,7 +155,7 @@ dependencies = [
 [[package]]
 org = "ballerina"
 name = "task"
-version = "2.3.0"
+version = "2.3.2"
 dependencies = [
 	{org = "ballerina", name = "jballerina.java"},
 	{org = "ballerina", name = "time"}
@@ -147,7 +164,7 @@ dependencies = [
 [[package]]
 org = "ballerina"
 name = "time"
-version = "2.2.3"
+version = "2.2.4"
 dependencies = [
 	{org = "ballerina", name = "jballerina.java"}
 ]
@@ -155,7 +172,7 @@ dependencies = [
 [[package]]
 org = "ballerina"
 name = "uuid"
-version = "1.4.0"
+version = "1.5.0"
 dependencies = [
 	{org = "ballerina", name = "crypto"},
 	{org = "ballerina", name = "jballerina.java"},
@@ -179,7 +196,7 @@ modules = [
 [[package]]
 org = "ballerinax"
 name = "rabbitmq"
-version = "2.6.0"
+version = "2.7.0"
 dependencies = [
 	{org = "ballerina", name = "crypto"},
 	{org = "ballerina", name = "jballerina.java"},
