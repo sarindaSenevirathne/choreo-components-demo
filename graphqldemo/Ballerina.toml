@@ -2,7 +2,7 @@
   observabilityIncluded = true
 
 [package]
-  distribution = "2201.1.2"
+  distribution = "2201.3.2"
   export = ["graphqldemo"]
   icon = "docs/icon.png"
   keywords = ["Type/GraphQL","Category/Service","Internal/http"]
