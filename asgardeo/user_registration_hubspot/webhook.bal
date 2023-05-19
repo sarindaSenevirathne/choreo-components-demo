@@ -42,6 +42,10 @@ service asgardeo:RegistrationService on webhookListener {
         }
         
         string email = <string>claims[emailAddressClaimURI];
+
+        log:printError(string`email #####: ${email}`);
+
+        log:printError(string`inithubspotEndpoint#####1`);
         contact:Client hubspotEndpoint = check new ({
             auth: {
                 refreshUrl: hubspotTokenEndpoint,
@@ -52,12 +56,17 @@ service asgardeo:RegistrationService on webhookListener {
             }
         });
 
+        log:printError(string`inithubspotEndpoint##### done 2`);
+
         contact:SimplePublicObjectInput contactPayload = {
             "properties": {
                 "email": email
             }
         };
+
         contact:SimplePublicObject|error hubspotResponse = hubspotEndpoint->create(contactPayload);
+        log:printError(string`creation post message ##### done 3`);
+        log:printError(string`creation response : ${ (check hubspotResponse).toString()}`);
         if hubspotResponse is error {
             log:printError(string`Hubspot account creation call failed! - ${hubspotResponse.toString()}`);
         } else {
