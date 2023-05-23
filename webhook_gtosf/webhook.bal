@@ -46,7 +46,8 @@ service salesforce:RecordService on webhookListener {
         log:printInfo("New record created ####### tested", payload = payload);
         string sobjectId = payload?.metadata?.recordId ?: "";
         string path = string `${BASE_URL}${salesforceObject}/${sobjectId}`;
-        sfdc:Client sfdcClient = check new ({
+     
+        sfdc:ConnectionConfig sfConfig = {
             baseUrl: salesforceBaseUrl,
             clientConfig: {
                 clientId: salesforceOAuthConfig.clientId,
@@ -54,7 +55,9 @@ service salesforce:RecordService on webhookListener {
                 refreshToken: salesforceOAuthConfig.refreshToken,
                 refreshUrl: salesforceOAuthConfig.refreshUrl
             }
-        });
+        };
+
+        sfdc:Client sfdcClient = check new (sfConfig);
         // Get relevent sobject information
         map<json> sobjectInfo = <map<json>>check sfdcClient->getRecord(path);
 
