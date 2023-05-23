@@ -1,6 +1,6 @@
 import ballerinax/trigger.salesforce;
 import ballerina/log;
-import ballerinax/sfdc;
+import ballerinax/salesforce as sfdc;
 import ballerinax/googleapis.sheets;
 
 type GsheetCellValueType int|string|decimal;
@@ -41,6 +41,10 @@ listener salesforce:Listener webhookListener = new (config);
 
 service salesforce:RecordService on webhookListener {
 
+    # Description
+    #
+    # + payload - Parameter Description
+    # + return - Return Value Description
     remote function onCreate(salesforce:EventData payload) returns error? {
         log:printInfo("sales force receord was created was created", payload = payload);
         log:printInfo("New record created ####### tested", payload = payload);
@@ -49,7 +53,7 @@ service salesforce:RecordService on webhookListener {
      
         sfdc:ConnectionConfig sfConfig = {
             baseUrl: salesforceBaseUrl,
-            clientConfig: {
+            auth: {
                 clientId: salesforceOAuthConfig.clientId,
                 clientSecret: salesforceOAuthConfig.clientSecret,
                 refreshToken: salesforceOAuthConfig.refreshToken,
