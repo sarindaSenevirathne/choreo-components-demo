@@ -83,12 +83,14 @@ service salesforce:RecordService on webhookListener {
         sheets:Client gSheetClient = check new (spreadsheetConfig);
 
         sheets:Row headers = check gSheetClient->getRow(spreadsheetId, worksheetName, HEADINGS_ROW);
+        log:printInfo("adding to google sheet", headers = headers);
+        
         if headers.values.length() == 0 {
             check gSheetClient->appendRowToSheet(spreadsheetId, worksheetName, columnNames);
         }
 
         check gSheetClient->appendRowToSheet(spreadsheetId, worksheetName, values);
-
+        log:printInfo("appending to success", spreadsheetId = spreadsheetId);
         //log:printInfo(string `${salesforceObject} with Id ${sobjectId} added to spreadsheet successfully`);
         //Not Implemented
     }
