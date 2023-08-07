@@ -47,7 +47,7 @@ service salesforce:RecordService on webhookListener {
     # + return - Return Value Description
     remote function onCreate(salesforce:EventData payload) returns error? {
         log:printInfo("sales force receord was created was created", payload = payload);
-        log:printInfo("New record created ####### tested", payload = payload);
+        log:printInfo("New record created ####### dd tested", payload = payload);
         string sobjectId = payload?.metadata?.recordId ?: "";
         string path = string `${BASE_URL}${salesforceObject}/${sobjectId}`;
      

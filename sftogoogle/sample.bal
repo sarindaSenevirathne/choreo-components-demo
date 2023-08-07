@@ -83,8 +83,10 @@ service sfdcListener:RecordService on sfdcEventListener {
         });
 
         sheets:Row headers = check gSheetClient->getRow(spreadsheetId, worksheetName, HEADINGS_ROW);
+         log:printInfo("creating GR ####### #1", payload=payload);
         if headers.values.length() == 0 {
             check gSheetClient->appendRowToSheet(spreadsheetId, worksheetName, columnNames);
+             log:printInfo("creating GR ####### #2", payload=payload);
         }
 
         check gSheetClient->appendRowToSheet(spreadsheetId, worksheetName, values);
