@@ -1,11 +1,13 @@
 import ballerinax/kafka;
 import ballerina/log;
 
-configurable string groupId = "order-consumers";
-configurable string orders = "orders";
-configurable string paymentSuccessOrders = "payment-success-orders";
+configurable string groupId = ?;
+configurable string orders = ?;
+configurable string paymentSuccessOrders =?;
 configurable decimal pollingInterval = 1;
-configurable string kafkaEndpoint = "pkc-6ojv2.us-west4.gcp.confluent.cloud:9092";
+configurable string kafkaEndpoint = ?;
+configurable string apikey = ?;
+configurable string apiSecret = ?;
 
 //configurable string kafkaEndpoint = "2.tcp.ngrok.io:14890";
 
@@ -35,40 +37,19 @@ public type Order record {
     PaymentStatus paymentStatus?;
 };
 
-// {
-// 	"ordertime": 1497014222380,
-// 	"orderid": 18,
-// 	"itemid": "Item_184",
-//     "paymentStatus": "SUCCESS",
-// 	"address": {
-// 		"city": "Mountain View",
-// 		"state": "CA",
-// 		"zipcode": 94041
-// 	}
-// }
-
-// kafka:ConsumerConfiguration consumerConfigs = {
-//     groupId: "group-id",
-//     topics: ["topic_order"],
-//     pollingInterval: 1,
-//     autoCommit: false,
-//     securityProtocol: kafka:PROTOCOL_SASL_SSL,
-//     auth: {username: "xxx", password: "xx"}
-// };
-
 listener kafka:Listener kafkaListener = new (kafkaEndpoint, consumerConfigs);
 
 final kafka:ConsumerConfiguration consumerConfigs = {
     groupId: groupId,
     topics: [orders],
     offsetReset: kafka:OFFSET_RESET_EARLIEST,
-    auth: {username: "VSFF5AJ2CMUD3MSK", password: "nZ/RzZE879vU1K9UmecY8p0H1mnDCV2aYjmNXVfCf/NiMv+KWZAAylsV3QLhOlf6"},
+    auth: {username: apikey, password: apiSecret},
     securityProtocol: kafka:PROTOCOL_SASL_SSL,
     pollingInterval
 };
 
 final kafka:ProducerConfiguration producerConfigs ={
-    auth: {username: "VSFF5AJ2CMUD3MSK", password: "nZ/RzZE879vU1K9UmecY8p0H1mnDCV2aYjmNXVfCf/NiMv+KWZAAylsV3QLhOlf6"},
+       auth: {username: apikey, password: apiSecret},
     securityProtocol: kafka:PROTOCOL_SASL_SSL
 };
 
