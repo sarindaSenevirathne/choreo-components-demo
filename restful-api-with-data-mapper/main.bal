@@ -28,7 +28,7 @@ type Student record {
     string visaType;
 };
 
-configurable int port = 8080;
+//configurable int port = 8080;
 configurable string sheetsAccessToken = ?;
 configurable string spreadSheetId = ?;
 configurable string sheetName = "enrollments";
@@ -71,7 +71,7 @@ function enrollPerson(Person person, Course[] courses) returns Student => let va
         totalCredits: courses.reduce(totalCredits, 0)
     };
 
-service /university on new http:Listener(port) {
+service /university on new http:Listener(8080) {
 
     resource function get persons() returns Person[] {
         return persons.toArray();
