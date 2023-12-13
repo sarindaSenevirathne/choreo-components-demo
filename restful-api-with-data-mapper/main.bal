@@ -71,7 +71,7 @@ function enrollPerson(Person person, Course[] courses) returns Student => let va
         totalCredits: courses.reduce(totalCredits, 0)
     };
 
-service / on new http:Listener(port) {
+service /university on new http:Listener(port) {
 
     resource function get persons() returns Person[] {
         return persons.toArray();
